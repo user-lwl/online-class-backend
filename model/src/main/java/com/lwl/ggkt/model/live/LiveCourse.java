@@ -21,6 +21,10 @@ public class LiveCourse extends BaseEntity {
 	@TableField("course_id")
 	private Long courseId;
 
+	@ApiModelProperty(value = "分类id")
+	@TableField("subject_id")
+	private Long subjectId;
+
 	@ApiModelProperty(value = "直播名称")
 	@TableField("course_name")
 	private String courseName;

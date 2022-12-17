@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwl.ggkt.live.mapper.LiveVisitorMapper">
+
+    <resultMap id="BaseResultMap" type="com.lwl.ggkt.model.live.LiveVisitor">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="liveCourseId" column="live_course_id" jdbcType="BIGINT"/>
+            <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="joinTime" column="join_time" jdbcType="VARCHAR"/>
+            <result property="leaveTime" column="leave_time" jdbcType="VARCHAR"/>
+            <result property="location" column="location" jdbcType="VARCHAR"/>
+            <result property="duration" column="duration" jdbcType="BIGINT"/>
+            <result property="durationTime" column="duration_time" jdbcType="VARCHAR"/>
+            <result property="liveVisitorId" column="live_visitor_id" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,live_course_id,course_name,
+        user_id,nick_name,join_time,
+        leave_time,location,duration,
+        duration_time,live_visitor_id,create_time,
+        update_time,is_deleted
+    </sql>
+</mapper>

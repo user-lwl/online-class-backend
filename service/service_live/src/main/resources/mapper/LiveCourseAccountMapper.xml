@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwl.ggkt.live.mapper.LiveCourseAccountMapper">
+
+    <resultMap id="BaseResultMap" type="com.lwl.ggkt.model.live.LiveCourseAccount">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="liveCourseId" column="live_course_id" jdbcType="BIGINT"/>
+            <result property="zhuboAccount" column="zhubo_account" jdbcType="VARCHAR"/>
+            <result property="zhuboPassword" column="zhubo_password" jdbcType="VARCHAR"/>
+            <result property="zhuboKey" column="zhubo_key" jdbcType="VARCHAR"/>
+            <result property="adminKey" column="admin_key" jdbcType="VARCHAR"/>
+            <result property="userKey" column="user_key" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,live_course_id,zhubo_account,
+        zhubo_password,zhubo_key,admin_key,
+        user_key,create_time,update_time,
+        is_deleted
+    </sql>
+</mapper>

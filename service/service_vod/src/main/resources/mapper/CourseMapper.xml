@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lwl.ggkt.vod.mapper.CourseMapper">
+
+    <resultMap id="BaseResultMap" type="com.lwl.ggkt.model.vod.Course">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="teacherId" column="teacher_id" jdbcType="BIGINT"/>
+            <result property="subjectId" column="subject_id" jdbcType="BIGINT"/>
+            <result property="subjectParentId" column="subject_parent_id" jdbcType="BIGINT"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="lessonNum" column="lesson_num" jdbcType="INTEGER"/>
+            <result property="durationSum" column="duration_sum" jdbcType="INTEGER"/>
+            <result property="cover" column="cover" jdbcType="VARCHAR"/>
+            <result property="buyCount" column="buy_count" jdbcType="BIGINT"/>
+            <result property="viewCount" column="view_count" jdbcType="BIGINT"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,teacher_id,subject_id,
+        subject_parent_id,title,price,
+        lesson_num,duration_sum,cover,
+        buy_count,view_count,status,
+        publish_time,create_time,update_time,
+        is_deleted
+    </sql>
+    <!--CoursePublishVo selectCoursePublishVoById(Long id);-->
+    <select id="selectCoursePublishVoById" resultType="com.lwl.ggkt.vo.vod.CoursePublishVo">
+        SELECT
+            c.id,
+            c.title,
+            c.cover,
+            c.lesson_num AS lessonNum,
+            c.price,
+            t.name AS teacherName,
+            s1.title AS subjectParentTitle,
+            s2.title AS subjectTitle
+        FROM course c
+            LEFT OUTER JOIN teacher t ON c.teacher_id=t.id
+            LEFT OUTER JOIN `subject` s1 ON c.subject_parent_id=s1.id
+            LEFT OUTER JOIN `subject` s2 ON c.subjcet_id=s2.id
+        WHERE c.id=#{id}
+    </select>
+
+    <!--CourseVo selectCourseVoById(Long courseId);-->
+    <select id="selectCourseVoById" resultType="com.lwl.ggkt.vo.vod.CourseVo">
+        SELECT
+            c.id,
+            c.title,
+            c.lesson_num AS lessonNum,
+            c.price,
+            c.cover,
+            c.buy_count AS buyCount,
+            c.view_count AS viewCount,
+            c.status,
+            c.publish_time AS publishTime,
+            c.teacher_id as teacherId,
+            t.name AS teacherName,
+            s1.title AS subjectParentTitle,
+            s2.title AS subjectTitle
+        FROM
+            course c
+            LEFT JOIN teacher t ON c.teacher_id = t.id
+            LEFT JOIN subject s1 ON c.subject_parent_id = s1.id
+            LEFT JOIN subject s2 ON c.subject_id = s2.id
+        WHERE c.id = #{id}
+    </select>
+</mapper>
